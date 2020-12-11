@@ -15,7 +15,7 @@ This is a _Data Structure and Algorithms_ quick references, focusing on moderate
     - Delete
     - Binary Trees
     - Binary Search Trees (BST)
-    - Tries
+    - [Tries](docs/tries.md)
     - Heaps
     - Self balancing Trees
     - Red Black Trees
