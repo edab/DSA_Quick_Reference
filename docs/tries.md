@@ -1,55 +1,48 @@
 # Tries
 
-A **Trie**, also known as a **Prefix Tree**, is an ordered tree where the keys are usually strings. Unlike a _Binary Search Tree (BST)_, no node store the key, but instead the position of the node in the tree defines the key with which it is associated.
+A **Trie**, also known as a **Prefix Tree**, is an ordered tree where the keys are usually strings. Unlike a _Binary Search Tree (BST)_: no node store the key, but instead the position of the node in the tree defines the key with which it is associated, and multiple child are possible, potentially one for each letter of the alphabet.
 
-- Time Complexity (m -> key length, n -> alphabet length)
-  - Average
-    - Access: $O(m)$
-    - Search: $O(m)$
-    - Insert: $O(m)$
-    - Delete: $O(m)$
-  - Worst
-    - Access: $O(m*n)$
-    - Search: $O(m*n)$
-    - Insert: $O(m*n)$
-    - Delete: $O(m*n)$
+Tries were first described by René de la Briandais in 1959, and are an efficient solution to problem like build a function that provides spell checking, or auto complete.
 
-Tries were first described by René de la Briandais in 1959, and are an efficient solution to a common problem: build a function that provides a spell check.
+A alternative way to solve that type of problems can involve _hashmaps_ for storing all the words, and in that case, we will have a _time complexity_ of $O(1)$ for searching a word, and a _space complexity_ of $O(m*n)$, where `m` is the length of the word, and `n` is the number of words.
 
-The function we need to implement should only return `True` if the word exists, otherwise `False`. The simplest solution is to have a _hashmap_ of all know words, and in that case, it will take $O(1)$ to see if a word exists, but the memory size would be $O(m*n)$, where `m` is the length of the word, and `n` is the number of words.
+The basic idea behind the _Trie_ data structure is that many different words share a _common prefix_, so why not save it once? We can then definitely improve space complexity saving prefix only one time, while sacrificing a little on performance.
 
-The basic idea behind this data structure is that many different words share a common prefix, so why not save it once?
+As an example, just think about four different words to store inside the _Trie_: `consider`, `consist`, `confident`, `confirm`. The _Trie_ structure in that case can be represented as this:
 
-A _Trie_ can definitely help on space complexity, since he allows to save a prefix shared between many different words in the same place while sacrificing a little on performance.
+```mermaid
+graph LR
 
-## Common problems solved using Trie
+  id1((" ")); id2((" ")); id3((" ")); id4((" ")); id5((" ")); id6((" ")); id7((" "))
+  id8((" ")); id9[" "]; id10((" ")); id11[" "]; id12((" ")); id13((" ")); id14((" "))
+  id15((" ")); id16((" ")); id17[" "]; id18((" ")); id19[" "]
+
+  id1-. c .-id2; id2-. o .-id3; id3-. n .-id4; id4-. s .-id5; id5-. i .-id6; id6-. d .-id7;  id7-. e .-id8; id8-. r .-id9
+
+  id6-. s .-id10; id10-. t .-id11
+
+  id4-. f .-id12; id12-. i .-id13; id13-. d .-id14; id14-. e .-id15; id15-. n .-id16; id16-. t .-id17
+
+  id13-. r .-id18; id18-. m .-id19
+```
+
+Each node preserve its children into a data structure that allows after to search if the next character is present or not. There are two common implementation, one use an _Array_ with a fixed size of 26, where each element represent a character of the alphabet and point eventually to a child, or a _Hash Map_ with a (char, next_node) pairs.
+
+## Complexity
+
+The _time complexity_ of this data structure, if `K` is the length of the string to insert or search, would be $O(K)$. For _space complexity_, if $N$ is the total number of nodes and $M$ is the size of the alphabet will be $O(N * M)$.
+
+## Practice question
 
 - ***Longest prefix matching***: Given a dictionary of words and an input string, find the longest prefix of the string which is also a word in dictionary.
-- ***Ukkonen’s Suffix Tree Construction***
+- ***Pattern matching***: Given a text txt[0..n-1] and a pattern pat[0..m-1], write a function search(char pat[], char txt[]) that prints all occurrences of pat[] in txt[]. You may assume that n > m.
+- ***Longest prefix matching***: Given a dictionary of words and an input string, find the longest prefix of the string which is also a word in dictionary.
 
 ## Implementations
 
 ### Basic Trie using dictionary
 
-Let's think about three different words:
-
-- analysis
-- analyze
-- anatomy
-
-We need to find a way to save in memory the prefix ana and analy only one time, something like this:
-
-```
-- [ana]
-  - [tomy] -> word
-  - [ly]
-    -[sis] -> word
-    -[ze] -> word
-```
-
-We can create a node that has: a _boolean_ that help to understand if the letter encountered up that node form a valid word, and a _dictionary of nodes_.
-
-A cleaner way to do that is using a `DefaultDict`, that in case the key is not available will return a default value.
+We can create a simple node that has a _boolean_ that help to understand if all the characters foudn so far forms a valid word, and a _dictionary of nodes_. A cleaner way to do that is using a `DefaultDict`, that in case the key is not available will return a default value.
 
 ```python
 from collections import defaultdict
@@ -60,11 +53,7 @@ class TrieNode:
 
     self.is_word = False
     self.children = defaultdict(TrieNode)
-```
 
-We can implement the data structure implementing a method for adding new words and one for checking if they exists:
-
-```python
 class Trie:
 
   def __init__(self):

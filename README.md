@@ -6,8 +6,9 @@ This is a _Data Structure and Algorithms_ quick references, focusing on moderate
 
 - Introduction
 - Data Structures
-  - Arrays and Lists
-  - Stacks, Queues and Deques
+  - [Collections](docs/collections.md)
+  - [Linked lists](docs/linked_lists.md)
+  - [Stacks](docs/stacks.md)
   - Trees
     - Traversal
     - Search
