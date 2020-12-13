@@ -1,6 +1,6 @@
 # Linked lists
 
-A **linked list** is a linear _collection_ of the elements, called nodes, where every element contain a reference to the next one. It is possible to have _duplicates_, the number of elements contained is not fixed, and since is a sequence, can be imagined as a chain.
+A **linked list** is a linear _collection_ of elements, called nodes, where every element contain a reference to the next one. It is possible to have _duplicates_, the number of elements contained is not fixed, and since is a sequence, can be imagined as a chain.
 
 ![singly_linked_list_example](../images/singly_linked_list.png)
 

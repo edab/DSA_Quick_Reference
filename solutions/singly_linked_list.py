@@ -15,19 +15,16 @@ class LinkedList:
             self.head = Node(value)
             return
 
-        # Move to the tail (the last node)
         node = self.head
         while node.next:
             node = node.next
 
         node.next = Node(value)
-        return
 
     def to_list(self):
         out_list = []
-
-        # Traverse the linked list
         node = self.head
+
         while node:
             out_list.append(node.value)
             node = node.next
@@ -35,17 +32,21 @@ class LinkedList:
         return out_list
 
     def size(self):
+        count = 1
         node = self.head
+
         if node == None:
             return 0
-        count = 1
+
         while node.next:
             count += 1
             node = node.next
+
         return count
 
     def iter(self):
         node = self.head
+
         while node:
             val = node.value
             node = node.next
@@ -54,6 +55,7 @@ class LinkedList:
     def delete(self, value):
         node = self.head
         prev = self.head
+
         while node:
             if node.value == value:
                 if node == self.head:
@@ -66,10 +68,12 @@ class LinkedList:
 
     def search(self, value):
         node = self.head
+
         while node:
             if node.value == value:
                 return True
             node = node.next
+
         return False
 
 # Test Case
