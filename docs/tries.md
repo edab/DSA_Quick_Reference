@@ -10,21 +10,7 @@ The basic idea behind the _Trie_ data structure is that many different words sha
 
 As an example, just think about four different words to store inside the _Trie_: `consider`, `consist`, `confident`, `confirm`. The _Trie_ structure in that case can be represented as this:
 
-```mermaid
-graph LR
-
-  id1((" ")); id2((" ")); id3((" ")); id4((" ")); id5((" ")); id6((" ")); id7((" "))
-  id8((" ")); id9[" "]; id10((" ")); id11[" "]; id12((" ")); id13((" ")); id14((" "))
-  id15((" ")); id16((" ")); id17[" "]; id18((" ")); id19[" "]
-
-  id1-. c .-id2; id2-. o .-id3; id3-. n .-id4; id4-. s .-id5; id5-. i .-id6; id6-. d .-id7;  id7-. e .-id8; id8-. r .-id9
-
-  id6-. s .-id10; id10-. t .-id11
-
-  id4-. f .-id12; id12-. i .-id13; id13-. d .-id14; id14-. e .-id15; id15-. n .-id16; id16-. t .-id17
-
-  id13-. r .-id18; id18-. m .-id19
-```
+![trie-example](../images/trie.png)
 
 Each node preserve its children into a data structure that allows after to search if the next character is present or not. There are two common implementation, one use an _Array_ with a fixed size of 26, where each element represent a character of the alphabet and point eventually to a child, or a _Hash Map_ with a (char, next_node) pairs.
 
@@ -50,34 +36,26 @@ from collections import defaultdict
 class TrieNode:
 
   def __init__(self):
-
     self.is_word = False
     self.children = defaultdict(TrieNode)
 
 class Trie:
 
   def __init__(self):
-
     self.root = TrieNode()
 
   def insert(self, word):
-
     curr_node = self.root
-
     for char in word:
       curr_node = curr_node.children[char]
-
     curr_node.is_word = True
 
   def search(self, word):
-
     curr_node = self.root
-
     for char in word:
       if char not in curr_node.children:
         return False
       curr_node = curr_node.children[char]
-
     return curr_node.is_word
 ```
 
@@ -89,44 +67,36 @@ Another common implementation of a _Trie_ use an array of 26 elements, one for e
 class TrieNode:
 
     def __init__(self):
-
         self.children = [None] * 26
         self.is_word = False
 
 class Trie:
 
     def __init__(self):
-
         self.root = TrieNode()
 
     def _char_to_index(self, ch):
         """
-        Converts current character into index from 'a' lower case
+        Converts lower case char into index starting from 'a'
         """
         return ord(ch) - ord('a')
 
     def insert(self, key):
-
         curr_node = self.root
-
         for level in range(len(key)):
             index = self._char_to_index(key[level])
             if not curr_node.children[index]:
                 curr_node.children[index] = TrieNode()
             curr_node = curr_node.children[index]
-
         curr_node.is_word = True
 
     def search(self, key):
-
         curr_node = self.root
-
         for level in range(len(key)):
             index = self._char_to_index(key[level])
             if not curr_node.children[index]:
                 return False
             curr_node = curr_node.children[index]
-
         return curr_node != None and curr_node.is_word
 ```
 

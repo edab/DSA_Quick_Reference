@@ -1,8 +1,12 @@
 # Linked lists
 
-In a **linked list** the _order_ of the elements is important, since every element contain a reference to the next one, it is possible to have _duplicates_ and the number of elements contained is not fixed.
+A **linked list** is a linear _collection_ of the elements, called nodes, where every element contain a reference to the next one. It is possible to have _duplicates_, the number of elements contained is not fixed, and since is a sequence, can be imagined as a chain.
 
-As opposed to an array, it is fairly simple to add or remove an element, and as an array, searching involve the traverse of all the elements.
+![singly_linked_list_example](../images/singly_linked_list.png)
+
+As opposed to an array, it is fairly simple to _add_ or _remove_ an element, since this involve the creation or deletion of a single node and the change of some pointers.
+
+As an array, _searching_ for an element imply the traverse of all the data structure in the worst case.
 
 There can be essentially three different types of linked lists:
 
@@ -12,7 +16,9 @@ There can be essentially three different types of linked lists:
 
 ## Complexity
 
-The _time complexity_ of this data structure, if `K` is the number of element already present would be $O(K)$ for searching an element, and $O(1)$ for inserting an element on the head or on the tail. For _space complexity_, if $N$ is the total number of nodes and $M$ is the size of the data contained into a node will be $O(N * M)$.
+The _time complexity_ for accessing of searching elements in this data structure, if `K` is the number of element already present, would be $O(K)$. Inserting or removing elements on the head or on the tail instead would be $O(1)$.
+
+For _space complexity_, if $N$ is the total number of nodes and $M$ is the size of the data contained into a node will be $O(N * M)$.
 
 ## Practice question
 
@@ -31,13 +37,19 @@ The _time complexity_ of this data structure, if `K` is the number of element al
 
 ### Singly Linked Lists
 
+There is room for optimization here, for example we can keep track of the tail of the list, so the _append_ operation will take $O(1)$ instead of $O(n)$, since we do not need anymore to traverse the list.
+
+The same can be done with the _size_ of the list.
+
 ```python
 class Node:
-  def __init__(self, value, next):
+
+  def __init__(self, value):
     self.value = value
-    self.next = next
+    self.next = None
 
 class LinkedList:
+
   def __init__(self):
     self.head = None
 
@@ -45,7 +57,6 @@ class LinkedList:
     if self.head is None:
       self.head = Node(value)
       return
-    # Move to the tail (the last node)
     node = self.head
     while node.next:
       node = node.next
@@ -57,24 +68,25 @@ class LinkedList:
 
 ```python
 class DoubleNode:
-    def __init__(self, value):
-        self.value = value
-        self.next = None
-        self.previous = None
+
+  def __init__(self, value):
+    self.value = value
+    self.next = None
+    self.previous = None
 
 class DoublyLinkedList:
-    def __init__(self):
-        self.head = None
-        self.tail = None
 
-    def append(self, value):
-        if self.head is None:
-            self.head = DoubleNode(value)
-            self.tail = self.head
-            return
+  def __init__(self):
+    self.head = None
+    self.tail = None
 
-        self.tail.next = DoubleNode(value)
-        self.tail.next.previous = self.tail
-        self.tail = self.tail.next
-        return
+  def append(self, value):
+    if self.head is None:
+      self.head = DoubleNode(value)
+      self.tail = self.head
+      return
+    self.tail.next = DoubleNode(value)
+    self.tail.next.previous = self.tail
+    self.tail = self.tail.next
+    return
 ```
