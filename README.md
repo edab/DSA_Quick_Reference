@@ -10,8 +10,8 @@ This is a _Data Structure and Algorithms_ quick reference, focusing on moderate 
     - [Linked lists](docs/linked_lists.md)
     - [Stacks](docs/stacks.md)
     - [Queues](docs/queues.md)
-    - [Priority queues](docs/priority_queues.md)
     - [Deques](docs/deques.md)
+    - [Priority queues](docs/priority_queues.md)
   - Non Linear Data Structures
   - Trees
     - Traversal

@@ -37,6 +37,8 @@ For _space complexity_, if $N$ is the total number of nodes and $M$ is the size 
 
 ### Singly Linked Lists
 
+Python3 implementation: [singly_linked_list.py](../solutions/singly_linked_list.py)
+
 There is room for optimization here, for example we can keep track of the tail of the list, so the _append_ operation will take $O(1)$ instead of $O(n)$, since we do not need anymore to traverse the list.
 
 The same can be done with the _size_ of the list.
@@ -65,6 +67,8 @@ class LinkedList:
 ```
 
 ### Double Linked Lists
+
+Python3 implementation: [double_linked_list.py](../solutions/double_linked_list.py)
 
 ```python
 class DoubleNode:
