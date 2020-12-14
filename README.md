@@ -13,25 +13,25 @@ This is a _Data Structure and Algorithms_ quick reference, focusing on moderate 
     - [Deques](docs/deques.md)
     - [Priority queues](docs/priority_queues.md)
   - Non Linear Data Structures
-  - Trees
-    - Traversal
-    - Search
-    - Insert
-    - Delete
+    - [Trees](docs/trees.md)
+      - Traversal
+      - Search
+      - Insert
+      - Delete
     - Binary Trees
     - Binary Search Trees (BST)
     - [Tries](docs/tries.md)
     - Heaps
     - Self balancing Trees
-    - Red Black Trees
-  - Maps and Hashing
-    - Sets and Maps
-    - Hashing
-    - Hash Maps
-  - Graphs
-    - Introduction
-    - Deep First Search
-    - Breath First Search
+      - Red Black Trees
+    - Maps and Hashing
+      - Sets and Maps
+      - Hashing
+      - Hash Maps
+    - Graphs
+      - Introduction
+      - Deep First Search
+      - Breath First Search
 - Algorithms
   - Binary Search
   - Sorting
