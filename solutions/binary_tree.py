@@ -1,3 +1,5 @@
+from collections import deque
+
 class Node:
 
     def __init__(self, value=None):
@@ -10,6 +12,43 @@ class Node:
 
     def __str__(self):
         return f"Node({self.value}, left:{self.left_child}, right:{self.right_child})"
+
+class Queue():
+
+    def __init__(self):
+        self.q = deque()
+
+    def enq(self,value):
+        self.q.appendleft(value)
+
+    def deq(self):
+        if len(self.q) > 0:
+            return self.q.pop()
+        else:
+            return None
+
+    def __len__(self):
+        return len(self.q)
+
+    def __repr__(self):
+        if len(self.q) > 0:
+            s = "<enqueue here>\n_________________\n"
+            s += "\n_________________\n".join([str(item) for item in self.q])
+            s += "\n_________________\n<dequeue here>"
+            return s
+        else:   
+            return "<queue is empty>"
+
+    def __repr__(self):
+        s = "Queue:\n"
+        if len(self.list) > 0:
+            s += "  <enqueue here> "
+            s += "..".join([f"<{str(item)}>" for item in self.list[::-1]])
+            s += " <dequeue here>"
+        else:
+            s += "<empty>"
+        return s
+
 
 class Stack():
 
@@ -157,6 +196,21 @@ def post_order(tree):
 
     return visit_order
 
+def bfs(tree):
+    visit_order = list()
+    q = Queue()
+    # start at the root node and add it to the queue
+    node = tree.get_root()
+    q.enq(node)
+    while len(q) > 0:
+        node = q.deq()
+        visit_order.append(node.value)
+        if node.left_child:
+            q.enq(node.left_child)
+        if node.right_child:
+            q.enq(node.right_child)
+    return visit_order
+
 # Test cases
 
 # Nodes
@@ -172,11 +226,14 @@ tree.get_root().right_child = Node("E")
 tree.get_root().left_child.left_child = Node("A")
 tree.get_root().left_child.right_child = Node("C")
 tree.get_root().right_child.right_child = Node("F")
-print("Iterative version") 
-print("   pre-order: Pass" if (pre_order_iterative(tree) == ['D', 'B', 'A', 'C', 'E', 'F']) else "   pre-order: Fail")
-print("    in-order: Pass" if (in_order_iterative(tree) == ['A', 'B', 'C', 'D', 'E', 'F']) else "    in-order: Fail")
-print("  post-order: Pass" if (post_order_iterative(tree) == ['A', 'C', 'B', 'F', 'E', 'D']) else "  post-order: Fail")
-print("Recursive version")
-print("   pre-order: Pass" if (pre_order(tree) == ['D', 'B', 'A', 'C', 'E', 'F']) else "   pre-order: Fail")
-print("    in-order: Pass" if (in_order(tree) == ['A', 'B', 'C', 'D', 'E', 'F']) else "    in-order: Fail")
-print("  post-order: Pass" if (post_order(tree) == ['A', 'C', 'B', 'F', 'E', 'D']) else "  post-order: Fail")
+print("DFS") 
+print("  Iterative version") 
+print("     pre-order: Pass" if (pre_order_iterative(tree) == ['D', 'B', 'A', 'C', 'E', 'F']) else "   pre-order: Fail")
+print("      in-order: Pass" if (in_order_iterative(tree) == ['A', 'B', 'C', 'D', 'E', 'F']) else "    in-order: Fail")
+print("    post-order: Pass" if (post_order_iterative(tree) == ['A', 'C', 'B', 'F', 'E', 'D']) else "  post-order: Fail")
+print("  Recursive version")
+print("     pre-order: Pass" if (pre_order(tree) == ['D', 'B', 'A', 'C', 'E', 'F']) else "   pre-order: Fail")
+print("      in-order: Pass" if (in_order(tree) == ['A', 'B', 'C', 'D', 'E', 'F']) else "    in-order: Fail")
+print("    post-order: Pass" if (post_order(tree) == ['A', 'C', 'B', 'F', 'E', 'D']) else "  post-order: Fail")
+print("BFS") 
+print("  Pass" if (bfs(tree) == ['D', 'B', 'E', 'A', 'C', 'F']) else "  Fail")
