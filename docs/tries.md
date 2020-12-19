@@ -1,8 +1,20 @@
 # Tries
 
-A **Trie**, also known as a **Prefix Tree**, is an ordered tree where the keys are usually strings. Unlike a _Binary Search Tree (BST)_: no node store the key, but instead the position of the node in the tree defines the key with which it is associated, and multiple child are possible, potentially one for each letter of the alphabet.
+A **Trie**, pronounced "try" and also known as a **Prefix Tree**, is an tree representing a collection of string with one node per common prefix, and each edge labeled with a character $c$.
 
-Tries were first described by René de la Briandais in 1959, and are an efficient solution to problem like build a function that provides spell checking, or auto complete.
+Unlike a _Binary Search Tree (BST)_, no node store the key and multiple child are possible, potentially one for each letter of the alphabet.
+
+Tries were first described by René de la Briandais in 1959, and are an efficient solution to problem related to string like:
+
+- functions that provides spell checking
+- functions that provides auto complete
+- functions for find the _longest_ something in a string
+  - _longest_ repeated substring in a sequence
+  - _longest_ common substring in a sequence
+  - _longest_ palindrome in a string
+  - _longest_ common prefixes within two suffixes
+- solve computational biology problems, where a gene is a long sequence of characters from the set _{ATGC}_, which represent the nucleic acid sequence of proteins.
+- data storage and compression (like the _block-sorting compression_)
 
 A alternative way to solve that type of problems can involve _hashmaps_ for storing all the words, and in that case, we will have a _time complexity_ of $O(1)$ for searching a word, and a _space complexity_ of $O(m*n)$, where `m` is the length of the word, and `n` is the number of words.
 
@@ -18,6 +30,35 @@ Each node preserve its children into a data structure that allows after to searc
 
 The _time complexity_ of this data structure, if `K` is the length of the string to insert or search, would be $O(K)$. For _space complexity_, if $N$ is the total number of nodes and $M$ is the size of the alphabet will be $O(N * M)$.
 
+## Usage
+
+### Tries as substrings offsets maps
+
+We can create a _Trie_ that maps substrings to offsets where they occur, if we add to the node a list of indexes, for solving computational biology problems. Suppose we should analyze the following sequence:
+
+$CTGTTACCGTACTTATAGCTCCTT$
+
+We can identify the gene sequences and their corresponding indexes:
+
+Substing | Index
+:-- | :--
+AC | 10
+AG | 16
+AT | 14
+CC | 6
+CC | 20
+CT | 0
+CT | 18
+GT | 2
+GT | 8
+TA | 4
+TT | 12
+TT | 22
+
+And we can create the following _Trie_:
+
+![trie-map-substrings](../images/trie_map_substrings.png)
+
 ## Practice question
 
 - ***Longest prefix matching***: Given a dictionary of words and an input string, find the longest prefix of the string which is also a word in dictionary.
@@ -28,7 +69,9 @@ The _time complexity_ of this data structure, if `K` is the length of the string
 
 ### Basic Trie using dictionary
 
-We can create a simple node that has a _boolean_ that help to understand if all the characters foudn so far forms a valid word, and a _dictionary of nodes_. A cleaner way to do that is using a `DefaultDict`, that in case the key is not available will return a default value.
+We can create for this data structure a simple _character node_ that contains two attributes: a _bool_ value that indicate the end of a word, and a _dict_ that holds any child letters that may com after it in a string.
+
+A cleaner way to do that is using a `DefaultDict`, that in case the key is not available will return a default value.
 
 ```python
 from collections import defaultdict
@@ -99,6 +142,7 @@ class Trie:
             curr_node = curr_node.children[index]
         return curr_node != None and curr_node.is_word
 ```
+
 
 ## References
 
