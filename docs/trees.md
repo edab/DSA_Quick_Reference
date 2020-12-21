@@ -19,11 +19,21 @@ There is some specific terminology associated with the tree:
 
 ### Insert
 
-Inserting an element into a _Tree_ when he has no order is a simple operation, all we need to do is find the first node that doesn't have all the children and add to it the new node. In the worst case is that we travel the longest path until we found the leaf.
+Inserting an element into a _Tree_ when he has no order is a simple operation, all we need to do is find the first node that doesn't have all the children and add to it the new node.
+
+In the worst case, we need to travel through the number of nodes equal to the height of the tree.
+
+### Search
+
+Since there is no particular order in the nodes of a _Tree_, we could start off by using any of the traversal algorithms to go through the tree, and check if the node has the value that we are searching.
 
 ### Delete
 
-###
+A delete operation usually start with a search operation, and we can have different conditions to handle:
+
+- the node found is a _leaf_: we can simply delete it.
+- the node has only one child: we can delete it, and connect it's child to the old node's parent.
+- the node has two child: we can search a leaf, delete the node and attach it's child to it.
 
 ### Traversal
 

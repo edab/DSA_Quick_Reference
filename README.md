@@ -14,11 +14,7 @@ This is a _Data Structure and Algorithms_ quick reference, focusing on moderate 
     - [Priority queues](docs/priority_queues.md)
   - Non Linear Data Structures
     - [Trees](docs/trees.md)
-      - Traversal
-      - Search
-      - Insert
-      - Delete
-    - Binary Trees
+    - [Binary Trees](docs/bst.md)
     - Binary Search Trees (BST)
     - [Tries](docs/tries.md)
     - Heaps
