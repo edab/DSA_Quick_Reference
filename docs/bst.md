@@ -1,6 +1,6 @@
 # Binary Search Tree
 
-A **Binary Search Tree** or **BST**, is an _ordered binary tree_ where every nodes store a key that is greater than all the keys in the node's left subtree, and less than those in its right subtree.
+A **Binary Search Tree** or **BST**, is an _ordered binary tree_ where every nodes store a key that is greater than all the keys in the node's left subtree, and less than those in its right subtree. It's a special kind of a binary tree.
 
 _BST_ allows fast lookup, addition and removal of data items, and can be used to build _dynamic sets_ and _lookup tables_.
 
@@ -14,3 +14,16 @@ Space  | $O(n)$     | $O(n)$
 Search | $O(log\ n)$ | $O(n)$
 Insert | $O(log\ n)$ | $O(n)$
 Delete | $O(log\ n)$ | $O(n)$
+
+## Implementation
+
+Since a _BST_ is a binary tree, we first create a node with left and right children.
+
+```python
+## Define a node
+class Node:
+  def __init__(self):
+    self.value = None
+    self.left = None
+    self.right = None
+```

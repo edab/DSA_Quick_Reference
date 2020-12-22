@@ -6,14 +6,16 @@ A **Tree** is a non linear _collection_ of elements called nodes connected by ed
 
 There is some specific terminology associated with the tree:
 
+- `Node`: any structure that holds data.
+- `Root`: the root node is the one from which all other nodes come.
 - `Level` of a node: number of edges to the root plus one.
-- `Parent`: node connected to a higher level.
-- `Child`: node connected to a lower level.
+- `Parent`: node with other connecting node.
+- `Child`: node connected to it's parent.
 - `Leaf`: node that has no children.
 - `Edge`: connection between two nodes.
 - `Path`: group of connections.
-- `Height` of a node: number of level between it and the further leaf of the tree.
-- `Depth` of a node: number of edges to the root.
+- `Height of a tree`: number of levels in a _Tree_.
+- `Depth of a node`: number of edges from the root of the _Tree_ to that node.
 
 ## Operations
 
