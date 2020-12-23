@@ -31,19 +31,10 @@ class Queue():
         return len(self.q)
 
     def __repr__(self):
-        if len(self.q) > 0:
-            s = "<enqueue here>\n_________________\n"
-            s += "\n_________________\n".join([str(item) for item in self.q])
-            s += "\n_________________\n<dequeue here>"
-            return s
-        else:   
-            return "<queue is empty>"
-
-    def __repr__(self):
         s = "Queue:\n"
-        if len(self.list) > 0:
+        if len(self.q) > 0:
             s += "  <enqueue here> "
-            s += "..".join([f"<{str(item)}>" for item in self.list[::-1]])
+            s += "..".join([f"<{str(item)}>" for item in self.q])
             s += " <dequeue here>"
         else:
             s += "<empty>"

@@ -75,6 +75,76 @@ class Tree():
                         parent.right_child = new_node
                         return
 
+    def delete(self, value):
+
+        curr = self.root 
+        prev = None
+    
+        # First check if the value is actually present in the BST. 
+        while(curr != None and curr.value != value): 
+            prev = curr 
+            if curr.value < value: 
+                curr = curr.right 
+            else: 
+                curr = curr.left_child
+    
+        # If the value is not found, there is nothing to delete
+        if curr == None: 
+            return 
+    
+        # Check if the node to be deleted has atmost one child 
+        if curr.left_child == None or curr.right_child == None: 
+                
+            # newCurr will replace the node to be deleted 
+            newCurr = None
+    
+            # if the left child does not exist. 
+            if curr.left == None: 
+                newCurr = curr.right 
+            else: 
+                newCurr = curr.left 
+    
+            # check if the node to be deleted is the root. 
+            if prev == None: 
+                return newCurr 
+    
+            # Check if the node to be deleted is prev's left or right child and 
+            # then replace this with newCurr 
+            if curr == prev.left: 
+                prev.left = newCurr 
+            else: 
+                prev.right = newCurr 
+    
+            curr = None
+    
+        # node to be deleted has two children. 
+        else: 
+
+            p = None
+            temp = None
+    
+            # Compute the inorder successor of curr. 
+            temp = curr.right_child
+            while(temp.left_child != None): 
+                p = temp 
+                temp = temp.left 
+    
+            # check if the parent of the inorder successor is the root or not. 
+            # if it isn't, then make the left child of its parent equal to the 
+            # inorder successor's right child. 
+            if p != None: 
+                p.left = temp.right 
+    
+            else: 
+                
+                # if the inorder successor was the root, then make the right 
+                # child of the node to be deleted equal to the right child of 
+                # the inorder successor. 
+                curr.right_child = temp.right_child 
+    
+            curr.value = temp.value 
+            temp = None
+
     def __repr__(self):
         """
         Traverse the tree using BFS so we can print it's structure.
@@ -117,6 +187,7 @@ tree.insert(51)
 tree.insert(23)
 tree.insert(47)
 tree.insert(2)
+print(tree.find_min())
 
 #print(f"""
 #search for 8: {tree.search(8)}
@@ -125,3 +196,7 @@ tree.insert(2)
 
 print(tree)
 print("  Pass" if (tree.find_min() == 2) else "  Fail")
+
+tree.delete(23)
+print(tree)
+print(tree.find_min())
