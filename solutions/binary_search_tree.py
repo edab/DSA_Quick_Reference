@@ -84,7 +84,7 @@ class Tree():
         while(curr != None and curr.value != value): 
             prev = curr 
             if curr.value < value: 
-                curr = curr.right 
+                curr = curr.right_child
             else: 
                 curr = curr.left_child
     
@@ -99,10 +99,10 @@ class Tree():
             newCurr = None
     
             # if the left child does not exist. 
-            if curr.left == None: 
-                newCurr = curr.right 
+            if curr.left_child == None: 
+                newCurr = curr.right_child
             else: 
-                newCurr = curr.left 
+                newCurr = curr.left_child
     
             # check if the node to be deleted is the root. 
             if prev == None: 
@@ -110,10 +110,10 @@ class Tree():
     
             # Check if the node to be deleted is prev's left or right child and 
             # then replace this with newCurr 
-            if curr == prev.left: 
-                prev.left = newCurr 
+            if curr == prev.left_child: 
+                prev.left_child = newCurr 
             else: 
-                prev.right = newCurr 
+                prev.right_child = newCurr 
     
             curr = None
     
@@ -145,6 +145,36 @@ class Tree():
             curr.value = temp.value 
             temp = None
 
+    def search(self, value):
+        """
+        Traverse the tree using BFS searching for a specific value.
+        """
+        q = Queue()
+        node = self.root
+        q.enq(node)
+
+        while(len(q) > 0):
+        
+            node = q.deq()
+        
+            if node == None:
+                continue
+        
+            if node.value == value:
+                return True
+        
+            if node.left_child is not None:
+                q.enq(node.left_child)
+            else:
+                q.enq(None)
+        
+            if node.right_child is not None:
+                q.enq(node.right_child)
+            else:
+                q.enq(None)
+                
+        return False
+
     def __repr__(self):
         """
         Traverse the tree using BFS so we can print it's structure.
@@ -169,34 +199,38 @@ class Tree():
             else:
                 q.enq( (None, level + 1) )
                 
-        s = "Tree\n"
+        s = "\nTree:"
         previous_level = -1
         for i in range(len(visit_order)):
             node, level = visit_order[i]
             if level == previous_level:
                 s += " | " + str(node)
             else:
-                s += "\n" + str(node)
+                s += "\n  " + str(node)
                 previous_level = level
+        s += "\n"
 
         return s
 
 # Test cases
 tree = Tree()
-tree.insert(51)
-tree.insert(23)
-tree.insert(47)
-tree.insert(2)
-print(tree.find_min())
+tree.insert(5)
+tree.insert(3)
+tree.insert(7)
+tree.insert(1)
+tree.insert(4)
+tree.insert(9)
+print(tree)
 
-#print(f"""
-#search for 8: {tree.search(8)}
-#search for 2: {tree.search(2)}
-#""")
+print("Search tests:")
+print("  Pass" if (tree.search(2) == False) else "  Fail")
+print("  Pass" if (tree.search(9) == True) else "  Fail")
+
+print("Find min test:")
+print("  Pass" if (tree.find_min() == 1) else "  Fail")
+
+print("Delete test:")
+tree.delete(9) # Leaf node
+print("  Pass" if (tree.search(9) == False) else "  Fail")
 
 print(tree)
-print("  Pass" if (tree.find_min() == 2) else "  Fail")
-
-tree.delete(23)
-print(tree)
-print(tree.find_min())
