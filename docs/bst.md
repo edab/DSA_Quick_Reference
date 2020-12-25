@@ -1,6 +1,15 @@
 # Binary Search Tree
 
-A **Binary Search Tree** or **BST**, is an _ordered binary tree_ where every nodes store a key that is greater than all the keys in the node's left subtree, and less than those in its right subtree. It's a special kind of a binary tree.
+A **Binary Search Tree** or **BST**, is a special type of binary tree, an _ordered binary tree_. All the nodes in the left sub-tree are less than or equal to the value of the node, and all the node in the right sub-tree are greater than the value of the node.
+
+<img src='https://g.gravizo.com/svg?
+  digraph G {
+    5 -> 3 -> 1;
+    3 -> 4;
+    5 -> 7 -> 9;
+    7 -> 10;
+  }
+'/>
 
 _BST_ allows fast lookup, addition and removal of data items, and can be used to build _dynamic sets_ and _lookup tables_.
 
