@@ -53,6 +53,12 @@ class Tree():
             node = node.left_child
         return node.value
 
+    def find_max(self):
+        node = self.root
+        while node.right_child:
+            node = node.right_child
+        return node.value
+
     def insert(self, new_value):
 
         new_node = Node(new_value)
@@ -80,7 +86,7 @@ class Tree():
         curr = self.root 
         prev = None
     
-        # First check if the value is actually present in the BST. 
+        # Safe check, the value is actually present in the BST?
         while(curr != None and curr.value != value): 
             prev = curr 
             if curr.value < value: 
@@ -92,7 +98,7 @@ class Tree():
         if curr == None: 
             return 
     
-        # Check if the node to be deleted has atmost one child 
+        # Check if the node to be deleted has at most one child 
         if curr.left_child == None or curr.right_child == None: 
                 
             # newCurr will replace the node to be deleted 
@@ -226,8 +232,9 @@ print("Search tests:")
 print("  Pass" if (tree.search(2) == False) else "  Fail")
 print("  Pass" if (tree.search(9) == True) else "  Fail")
 
-print("Find min test:")
+print("Find max/min test:")
 print("  Pass" if (tree.find_min() == 1) else "  Fail")
+print("  Pass" if (tree.find_max() == 9) else "  Fail")
 
 print("Delete test:")
 tree.delete(9) # Leaf node
