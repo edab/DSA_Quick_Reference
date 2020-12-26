@@ -97,9 +97,22 @@ class Tree():
         # If the value is not found, there is nothing to delete
         if curr == None: 
             return 
+
+        # If the node to be deleted is a leaf node
+        if curr.left_child == None and curr.right_child == None: 
     
-        # Check if the node to be deleted has at most one child 
-        if curr.left_child == None or curr.right_child == None: 
+            # check if the node to be deleted is the root. 
+            if prev == None: 
+                self.root = None
+                return
+
+            if prev.right_child == curr:
+                prev.right_child = None
+            else:
+                prev.left_child = None
+
+        # If the node to be deleted has at most one child 
+        elif curr.left_child == None or curr.right_child == None: 
                 
             # newCurr will replace the node to be deleted 
             newCurr = None
@@ -112,7 +125,8 @@ class Tree():
     
             # check if the node to be deleted is the root. 
             if prev == None: 
-                return newCurr 
+                self.root = newCurr
+                return 
     
             # Check if the node to be deleted is prev's left or right child and 
             # then replace this with newCurr 
@@ -133,13 +147,13 @@ class Tree():
             temp = curr.right_child
             while(temp.left_child != None): 
                 p = temp 
-                temp = temp.left 
+                temp = temp.left_child
     
             # check if the parent of the inorder successor is the root or not. 
             # if it isn't, then make the left child of its parent equal to the 
             # inorder successor's right child. 
             if p != None: 
-                p.left = temp.right 
+                p.left = temp.right_child
     
             else: 
                 
@@ -149,7 +163,7 @@ class Tree():
                 curr.right_child = temp.right_child 
     
             curr.value = temp.value 
-            temp = None
+            p.left_child = None
 
     def search(self, value):
         """
@@ -226,18 +240,27 @@ tree.insert(7)
 tree.insert(1)
 tree.insert(4)
 tree.insert(9)
+tree.insert(13)
+tree.insert(6)
+tree.insert(15)
+tree.insert(10)
 print(tree)
 
 print("Search tests:")
-print("  Pass" if (tree.search(2) == False) else "  Fail")
-print("  Pass" if (tree.search(9) == True) else "  Fail")
+print("  - Search (1):" + "  Pass" if (tree.search(2) == False) else "  Fail")
+print("  - Search (9):" + "  Pass" if (tree.search(9) == True) else "  Fail")
 
 print("Find max/min test:")
-print("  Pass" if (tree.find_min() == 1) else "  Fail")
-print("  Pass" if (tree.find_max() == 9) else "  Fail")
+print("  - Min( 1):" + "  Pass" if (tree.find_min() == 1) else "  Fail")
+print("  - Max(15):" + "  Pass" if (tree.find_max() == 15) else "  Fail")
 
 print("Delete test:")
-tree.delete(9) # Leaf node
-print("  Pass" if (tree.search(9) == False) else "  Fail")
-
+tree.delete(10) # Leaf node
+print("  - Delete(10):" + "  Pass" if (tree.search(10) == False) else "  Fail")
+print(tree)
+tree.delete(9) # Node with one child
+print("  - Delete( 9):" + "  Pass" if (tree.search(9) == False) else "  Fail")
+print(tree)
+tree.delete(5) # Node with two child
+print("  - Delete( 5):" + "  Pass" if (tree.search(5) == False) else "  Fail")
 print(tree)
