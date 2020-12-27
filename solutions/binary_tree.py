@@ -11,7 +11,7 @@ class Node:
         return f"Node({self.value}, left:{self.left_child}, right:{self.right_child})"
 
     def __str__(self):
-        return f"Node({self.value}, left:{self.left_child}, right:{self.right_child})"
+        return f"Node({self.value})"
 
 class Queue():
 
@@ -81,6 +81,43 @@ class Tree:
     
     def get_root(self):
         return self.root
+
+    def __repr__(self):
+        """
+        Traverse the tree using BFS so we can print it's structure.
+        """
+        level = 0
+        q = Queue()
+        visit_order = list()
+        node = self.root
+        q.enq((node,level))
+        while(len(q) > 0):
+            node,level = q.deq()
+            if node == None:
+                visit_order.append( ("<empty>", level) )
+                continue
+            visit_order.append( (node, level) )
+            if node.left_child is not None:
+                q.enq( (node.left_child, level + 1 ))
+            else:
+                q.enq( (None, level + 1) )
+            if node.right_child is not None:
+                q.enq( (node.right_child, level + 1) )
+            else:
+                q.enq( (None, level + 1) )
+                
+        s = "\nTree:"
+        previous_level = -1
+        for i in range(len(visit_order)):
+            node, level = visit_order[i]
+            if level == previous_level:
+                s += " | " + str(node)
+            else:
+                s += "\n  " + str(node)
+                previous_level = level
+        s += "\n"
+
+        return s
 
 def pre_order_iterative(tree):
     visit_order = list()
@@ -217,6 +254,7 @@ tree.get_root().right_child = Node("E")
 tree.get_root().left_child.left_child = Node("A")
 tree.get_root().left_child.right_child = Node("C")
 tree.get_root().right_child.right_child = Node("F")
+print(tree)
 print("DFS") 
 print("  Iterative version") 
 print("     pre-order: Pass" if (pre_order_iterative(tree) == ['D', 'B', 'A', 'C', 'E', 'F']) else "   pre-order: Fail")

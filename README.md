@@ -24,7 +24,7 @@ This is a _Data Structure and Algorithms_ quick reference, focusing on moderate 
       - Sets and Maps
       - Hashing
       - Hash Maps
-    - Graphs
+    - [Graphs](docs/graphs.md)
       - Introduction
       - Deep First Search
       - Breath First Search
