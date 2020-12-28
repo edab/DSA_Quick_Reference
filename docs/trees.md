@@ -49,7 +49,7 @@ There are two common approach used to explore it:
   - **pre-order**: visit a node, traverse it's left subtree and then it's right subtree [D, B, A, C, E, F]
   - **in-order**: traverse it's left subtree, visit the node, traverse it's right subtree [A, B, C, D, E, F]
   - **post-order**: traverse it's left subtree, traverse it's right subtree and then visit the node. [A, C, B, F, E, D]
-- **Breath First Search (BFS)**: were the priority is to visit each node that has the same level, before visiting child nodes. [D, B, E, A, C, F]
+- **Breadth First Search (BFS)**: were the priority is to visit each node that has the same level, before visiting child nodes. [D, B, E, A, C, F]
 
 ## Implementation
 
@@ -206,5 +206,24 @@ def post_order(tree):
 
     traverse(tree.get_root())
 
+    return visit_order
+```
+
+### Breadth First Search
+
+```python
+def bfs(tree):
+    visit_order = list()
+    q = Queue()
+    # start at the root node and add it to the queue
+    node = tree.get_root()
+    q.enq(node)
+    while len(q) > 0:
+        node = q.deq()
+        visit_order.append(node.value)
+        if node.left_child:
+            q.enq(node.left_child)
+        if node.right_child:
+            q.enq(node.right_child)
     return visit_order
 ```
