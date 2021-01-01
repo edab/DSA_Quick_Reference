@@ -80,3 +80,5 @@ The implementation of _BFS_ is based on a _queue_, and repeat the following oper
 3. We go back to the first node, visit all its adjacent nodes and add it to the queue
 
 We can think on _BFS_ as we are constructing a tree, were the child of a node are all its adjacent nodes, and where we proceed to visit by levels.
+
+The runtime complexity is $O(|V| + |E|)$, where $V$ is the number of vertexes and $E$ is the number of edges.

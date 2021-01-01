@@ -15,19 +15,16 @@ This is a _Data Structure and Algorithms_ quick reference, focusing on moderate 
   - Non Linear Data Structures
     - [Trees](docs/trees.md)
     - [Binary Trees](docs/bst.md)
-    - Binary Search Trees (BST)
+    - [Binary Search Trees (BST)](docs/bst.md)
     - [Tries](docs/tries.md)
     - Heaps
     - Self balancing Trees
       - Red Black Trees
     - Maps and Hashing
       - Sets and Maps
-      - Hashing
+      - [Hashing](docs/hashing.md)
       - Hash Maps
     - [Graphs](docs/graphs.md)
-      - Introduction
-      - Deep First Search
-      - Breath First Search
 - Algorithms
   - Binary Search
   - Sorting
