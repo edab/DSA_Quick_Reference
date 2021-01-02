@@ -4,18 +4,40 @@ Hashing is the operation of transforming data of arbitrary size, like a string o
 
 ## Hash function
 
-A basic hash function can use the `ord()` function for get the ordinal value of each character of a string, and compute its sum:
+A basic hash function can use the `ord()` function for get the ordinal value of each character of a string, and compute its sum. The problem with this solution is that the same result can be obtained for am anagram, or another string that has two different letters:
 
 ```python
->>> sum(map(ord, 'earth thing'))
-1102
+for item in ('earth thing', 'heart night', 'keapu light'):
+   print(f"{item}: {sum(map(ord, item))}")
+
+earth thing: 1102
+heart night: 1102
+keapu light: 1102
 ```
 
-The problem with this solution is that the same result can be obtained for am anagram, or another string that has two different letters:
+Hash function need to be very fast, and fast, so instead of creating a perfect and complex function capable of producing always unique key, we accept less perfect functions that produces collision.
+
+One simple improvement can be the ability to consider the positions of each char adding a multiplier, that improve the results but doesn't prevent every collisions:
 
 ```python
->>> sum(map(ord, 'heart night'))
-1102
->>> sum(map(ord, 'keapu light'))
-1102
+def hash(input):
+  mult = 1
+  hv = 0
+  for ch in input:
+    hv += mult * ord(ch)
+    mult += 1
+  return hv
+
+for item in ('earth thing', 'heart night', 'keapu light', 'ad', 'ga'):
+  print(f"{item}: {hash(item)}")
+
+earth thing: 6635
+heart night: 6678
+keapu light: 6664
+ad: 297
+ga: 297
 ```
+
+## Implementation
+
+Python3 implementation: [hast_table.py](../solutions/hast_table.py)
