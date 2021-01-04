@@ -7,45 +7,66 @@ class HashItem:
 
 class HashTable:
 
-    def __init__(self):
-        
-        self.size = 256  # Total number of slots in the table
-        self.count = 0   # Number of slots filled
-        self.slots = [None for i in range(self.size)]
-        
-    def _hash(self, key):
+    def __init__(self, initial_size = 10):
+
+        self.num_entries = 0  # Number of slots filled
+        self.p = 31           # The encoding prime number [usually 31 or 37]
+        self.bucket_array = [None for i in range(initial_size)]
+
+    def size(self):
+        return self.num_entries
+
+    def _hash_poly(self, key):
+
+        # represents (self.p^0) which is 1
+        current_coefficient = 1
+        hash_code = 0
+        num_buckets = len(self.bucket_array)
+
+        for character in str(key):
+            hash_code += ord(character) * current_coefficient
+            current_coefficient *= self.p
+
+        return hash_code % num_buckets
+
+    def _hash_mul(self, key):
+
         mult = 1
         hv = 0
+        num_buckets = len(self.bucket_array)
+
         for ch in key:
             hv += mult * ord(ch)
             mult += 1
-        return hv % self.size
+        return hv % num_buckets
 
     def __setitem__(self, key, value):
-    
+
         item = HashItem(key, value)
-        h = self._hash(key)
+        h = self._hash_poly(key)
+        num_buckets = len(self.bucket_array)
 
         # Found an empty slot
-        while self.slots[h] is not None:
-            if self.slots[h].key is key:
+        while self.bucket_array[h] is not None:
+            if self.bucket_array[h].key is key:
                 break
-            h = (h + 1) % self.size
+            h = (h + 1) % num_buckets
 
         # Insert the element and update the count
-        if self.slots[h] is None:
-            self.count += 1
-        self.slots[h] = item
+        if self.bucket_array[h] is None:
+            self.num_entries += 1
+        self.bucket_array[h] = item
 
     def __getitem__(self, key):
 
-        h = self._hash(key)
+        h = self._hash_poly(key)
+        num_buckets = len(self.bucket_array)
 
         # We start looking for the key starting from that index
-        while self.slots[h] is not None:
-            if self.slots[h].key is key:
-                return self.slots[h].value
-            h = (h + 1) % self.size
+        while self.bucket_array[h] is not None:
+            if self.bucket_array[h].key is key:
+                return self.bucket_array[h].value
+            h = (h + 1) % num_buckets
 
         return None
 
@@ -60,5 +81,3 @@ ht["ga"] = "doesn't collide"
 for key in ("watercolor", "oil", "alcohol_markers", "worst", "ad", "ga"):
     v = ht[key]
     print(v)
-
-

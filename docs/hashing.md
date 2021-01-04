@@ -38,6 +38,21 @@ ad: 297
 ga: 297
 ```
 
+A lot of research has been done trying to figuring out a good hash functions for strings, and one of the best ones is the one where we multiply each character $ch$ by a prime number $p$, usually 31 or 37, with increasing power, obtaining a good distribution:
+
+$$ch_0 * p^0 + ch_1 * p^1 + ch_2 * p^2 + ch_3 * p^3 + ch_4 * p^4 ... $$
+
+## Collision handling
+
+The _hash function_ essentially reduces a large variable-length index to a fixed-length small one, and since this operation is prone to the collision, we have to be sure that the key remains unique.
+
+Two different approach can be used to this problem:
+
+- **Separate chaining**: were we use the same bucket to store multiple objects, and the bucket in this case will store a linked list of key-value pairs.
+- **Open Addressing**: were, after knowing the bucket index, if is empty we store the value in it, otherwise we start an operation called _probing_ were we search another index using different techniques like: linear probing (we move to the next bucket), quadrating probing, double hashing (were we use an alternative hashing function). 
+
+
+
 ## Implementation
 
 Python3 implementation: [hast_table.py](../solutions/hast_table.py)
