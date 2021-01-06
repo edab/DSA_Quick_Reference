@@ -49,9 +49,7 @@ The _hash function_ essentially reduces a large variable-length index to a fixed
 Two different approach can be used to this problem:
 
 - **Separate chaining**: were we use the same bucket to store multiple objects, and the bucket in this case will store a linked list of key-value pairs.
-- **Open Addressing**: were, after knowing the bucket index, if is empty we store the value in it, otherwise we start an operation called _probing_ were we search another index using different techniques like: linear probing (we move to the next bucket), quadrating probing, double hashing (were we use an alternative hashing function). 
-
-
+- **Open Addressing**: were, after knowing the bucket index, if is empty we store the value in it, otherwise we start an operation called _probing_ were we search another index using different techniques like: linear probing (we move to the next bucket), quadrating probing, double hashing (were we use an alternative hashing function).
 
 ## Implementation
 

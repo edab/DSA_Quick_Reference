@@ -21,8 +21,8 @@ This is a _Data Structure and Algorithms_ quick reference, focusing on moderate 
     - Self balancing Trees
       - Red Black Trees
     - Maps and Hashing
-      - [Maps](docs/maps.md)
       - [Hashing](docs/hashing.md)
+      - [Maps](docs/maps.md)
     - [Graphs](docs/graphs.md)
 - Algorithms
   - Binary Search
