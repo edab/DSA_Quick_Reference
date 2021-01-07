@@ -35,7 +35,7 @@ This is a _Data Structure and Algorithms_ quick reference, focusing on moderate 
     - Basic approach
     - D&C approach
   - Greedy Algorithms
-    - Dijkstras
+    - [Dijkstras](docs/dijkstras_algorithm.md)
   - Dynamic Programming
     - Knapsack problem
     - Longest common sequence
