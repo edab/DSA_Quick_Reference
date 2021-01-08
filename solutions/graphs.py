@@ -16,6 +16,12 @@ class Graph(object):
     def __init__(self, node_list):
         self.nodes = node_list
 
+    def _read_adjacent_list(self, adjacent_list):
+        for elem in adjacent_list:
+            self.nodes.add(elem[0])
+            self.nodes.add(elem[1])
+            self.add_edge(GraphNode(elem[0]), GraphNode(elem[0]))
+
     def edge_list(self):
 
         edge_list = list()  # set give better result, but we use here 2D list

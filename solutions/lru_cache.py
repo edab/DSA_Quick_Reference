@@ -110,7 +110,7 @@ class Deque:
             return "Deque: empty!"
 
 
-class LRU_Cache(object):
+class LRU_Cache:
     '''LRU Cache data object implementation with O(1) time complexity'''
 
     def __init__(self, capacity: int):
@@ -169,7 +169,7 @@ class LRU_Cache(object):
 # Tests cases
 
 # Utility function
-def Test_LRU_Cache(test_name, op_list, val_list, result_list, debug=False):
+def Test_LRU_Cache(test_name, op_list, val_list, result_list, is_debug = False):
 
     lru_cache = None
     out_list = []
@@ -189,7 +189,7 @@ def Test_LRU_Cache(test_name, op_list, val_list, result_list, debug=False):
         if out != res:
             print(f"Fail: [LRU Cache content: {lru_cache.to_list()}, op: {op}, val: {val}, res: {res}")
             return
-        if debug and op != "LRUCache":
+        if is_debug and op != "LRUCache":
             print(f"  {op}({val}), dict: {len(lru_cache.lru_dict)}, deque: {lru_cache.lru_deque.size()}")
             print(f"    dict: {lru_cache.lru_dict}")
             print(f"   deque: {lru_cache.lru_deque}")
