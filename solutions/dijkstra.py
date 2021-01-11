@@ -1,3 +1,5 @@
+# Dijkstra's algorithm O(V^2) implementation
+
 # Helper Code
 from collections import defaultdict
 import sys
@@ -20,12 +22,9 @@ class Graph:
 
     def _read_adjacent_list(self, adjacent_list):
         for elem in adjacent_list:
-            self.add_node(elem[0])
-            self.add_node(elem[1])
+            self.nodes.add(elem[0])
+            self.nodes.add(elem[1])
             self.add_edge(elem[0], elem[1], elem[2])
-
-    def add_node(self, value):
-        self.nodes.add(value)
 
     def add_edge(self, from_node, to_node, distance):
         self.neighbours[from_node].append(to_node)
@@ -33,11 +32,12 @@ class Graph:
         self.distances[(from_node, to_node)] = distance
         self.distances[(to_node, from_node)] = distance
 
-    def print_graph(self):
-        print("Set of Nodes are: ", self.nodes)
-        print("Neighbours are: ", self.neighbours)
-        print("Distances are: ", self.distances)
-        
+    def __str__(self):
+        s =  f"\n  Set of Nodes are: {self.nodes}\n"
+        s += f"    Neighbours are: {self.neighbours}\n"
+        s += f"     Distances are: {self.distances}\n"
+        return s
+
 ''' Find the shortest path from the source node to every other node in the given graph '''
 def dijkstra(graph, source, is_debug = False):
 
@@ -111,32 +111,31 @@ def dijkstra(graph, source, is_debug = False):
 # Tests cases
 
 # Utility function
-def Test_Dijkstra(test_name, adj_list, expected, is_debug = False):
+def Test_Dijkstra(test_name, adj_list, source, expected, is_debug = False):
     print(f"{test_name:>25s}: ", end = '')
     testGraph = Graph(adj_list)
-    distances = dijkstra(testGraph, 'A')
-    distances = dijkstra(testGraph, 'A')
+    distances = dijkstra(testGraph, source)
     if distances == expected:
         print("Pass ", end = '')
     else:
-        print(f"Fail: [distances: {distances}, result: {expected} ", end = '')
+        print(f"Fail: [distances: {distances}, expected: {expected} ", end = '')
 
     if is_debug:
-        print(dijkstra(testGraph, 'A'))
+        print(dijkstra(testGraph, source))
     else:
         print()
 
 # Test 1
 adj_list = [('A','B',3),('A','D',2),('B','D',4),('B','E',6),('B','C',1),('C','E',2),('E','D',1)]
 expected = {'A': 0, 'D': 2, 'B': 3, 'E': 3, 'C': 4}
-Test_Dijkstra("Test 1", adj_list, expected)
+Test_Dijkstra("Test 1", adj_list, 'A', expected)
 
 # Test 2
 adj_list = [('A','B',5),('B','C',5),('A','C',10)]
 expected = {'A': 0, 'C': 10, 'B': 5}
-Test_Dijkstra("Test 2", adj_list, expected)
+Test_Dijkstra("Test 2", adj_list, 'A', expected)
 
 # Test 3
 adj_list = [('A', 'B', 5), ('A', 'C', 4), ('D', 'C', 1), ('B', 'C', 2), ('A', 'D', 2), ('B', 'F', 2), ('C', 'F', 3), ('E', 'F', 2), ('C', 'E', 1)]
 expected = {'A': 0, 'C': 3, 'B': 5, 'E': 4, 'D': 2, 'F': 6}
-Test_Dijkstra("Test 3", adj_list, expected)
+Test_Dijkstra("Test 3", adj_list, 'A', expected)
