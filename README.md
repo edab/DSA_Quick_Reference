@@ -27,7 +27,7 @@ This is a _Data Structure and Algorithms_ quick reference, focusing on moderate 
 - Algorithms
   - Binary Search
   - Sorting
-    - Bubble Sort
+    - [Bubble Sort](docs/bubble_sort.md)
     - Merge Sort
     - Quick Sort
   - Divide and Conquer

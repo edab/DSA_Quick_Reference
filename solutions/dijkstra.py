@@ -110,7 +110,7 @@ def dijkstra(graph, source, is_debug = False):
 
 # Tests cases
 
-# Utility function
+# Helper function
 def Test_Dijkstra(test_name, adj_list, source, expected, is_debug = False):
     print(f"{test_name:>25s}: ", end = '')
     testGraph = Graph(adj_list)
