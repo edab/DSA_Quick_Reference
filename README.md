@@ -28,8 +28,8 @@ This is a _Data Structure and Algorithms_ quick reference, focusing on moderate 
   - Binary Search
   - Sorting
     - [Bubble Sort](docs/bubble_sort.md)
-    - Merge Sort
-    - Quick Sort
+    - [Merge Sort](docs/merge_sort.md)
+    - [Quick Sort](docs/quick_sort.md)
   - Divide and Conquer
     - Median problem
     - Basic approach
