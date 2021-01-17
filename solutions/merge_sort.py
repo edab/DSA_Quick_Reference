@@ -46,7 +46,7 @@ def merge_sort(array):
         left=merge_sort(array[:midpoint]),
         right=merge_sort(array[midpoint:]))
 
-# Tests cases
+# Test cases
 
 # Performance evaluation
 def check_performance(algorithm):

@@ -27,7 +27,7 @@ def bubble_sort(array):
 
     return array
 
-# Tests cases
+# Test cases
 
 # Performance evaluation
 def check_performance(algorithm):

@@ -17,7 +17,7 @@ This is a _Data Structure and Algorithms_ quick reference, focusing on moderate 
     - [Binary Trees](docs/bst.md)
     - [Binary Search Trees (BST)](docs/bst.md)
     - [Tries](docs/tries.md)
-    - Heaps
+    - [Heaps](docs/heaps.md)
     - Self balancing Trees
       - Red Black Trees
     - Maps and Hashing

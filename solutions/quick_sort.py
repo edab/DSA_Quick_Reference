@@ -28,7 +28,7 @@ def quick_sort(array):
     # The final result combines the sorted low, same, sorted
     return quick_sort(low) + same + quick_sort(high)
 
-# Tests cases
+# Test cases
 
 # Performance evaluation
 def check_performance(algorithm):
