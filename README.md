@@ -19,7 +19,7 @@ This is a _Data Structure and Algorithms_ quick reference, focusing on moderate 
     - [Tries](docs/tries.md)
     - [Heaps](docs/heaps.md)
     - Self balancing Trees
-      - Red Black Trees
+      - [Red Black Trees](docs/red_black_trees.md)
     - Maps and Hashing
       - [Hashing](docs/hashing.md)
       - [Maps](docs/maps.md)
