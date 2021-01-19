@@ -14,7 +14,7 @@ class Node:
         return f"Node({self.value})"
 
 
-class Queue():
+class Queue:
 
     def __init__(self):
         self.q = deque()
@@ -42,7 +42,7 @@ class Queue():
         return s
 
 
-class Tree():
+class Tree:
 
     def __init__(self):
         self.root = None
