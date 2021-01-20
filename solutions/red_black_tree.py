@@ -78,9 +78,68 @@ class RedBlackTree:
         if gp == None:
             return
 
-        # Case 4:
-        # Case 5:
+        # Case 4: Parent is Red and Sibling is NULL Black
+        if gp.left and node == gp.left.right:
+            self.rotate_left(node.parent)
+            node = node.left
+        elif gp.right and node == gp.right.left:
+            self.rotate_right(node.parent)
+            node = node.right
 
+        # Case 5: Parent and Child are both Red and on the same side of 
+        #         their parent
+        p = node.parent
+        gp = p.parent
+        if node == p.left:
+            self.rotate_right(gp)
+        else:
+            self.rotate_left(gp)
+        p.color = 'black'
+        gp.color = 'red'
+
+    def rotate_left(self, node):
+
+        # Save parent and sub-tree references
+        p = node.parent
+        node_moving_up = node.right
+
+        # After 'node' moves up, swap right and left child
+        node.right = node_moving_up.left
+
+        # 'node' moves down, to being a left child
+        node_moving_up.left = node
+        node.parent = node_moving_up
+
+        # We connect to the sub-tree's parent
+        # Maybe 'node' have been the root
+        if p != None:
+            if node == p.left:
+                p.left = node_moving_up
+            else:
+                p.right = node_moving_up
+        node_moving_up.parent = p
+
+    def rotate_right(self, node):
+
+        # Save parent and sub-tree references
+        p = node.parent
+        node_moving_up = node.left
+
+        # After 'node' moves up, swap right and left child
+        node.left = node_moving_up.right
+        
+        # 'node' moves down, to being a right child
+        node_moving_up.right = node
+        node.parent = node_moving_up
+        
+        # We connect to the sub-tree's parent
+        # Maybe 'node' have been the root
+        if p != None:
+            if node == p.left:
+                p.left = node_moving_up
+            else:
+                p.right = node_moving_up
+        node_moving_up.parent = p
 
     def search(self, find_val):
         return False
@@ -100,8 +159,8 @@ class RedBlackTree:
 tree = RedBlackTree(9)
 tree.insert(6)
 tree.insert(19)
-tree.insert(4)
-tree.insert(21)
-tree.insert(15)
-
+print(tree)
+tree.insert(13)
+print(tree)
+tree.insert(16)
 print(tree)
