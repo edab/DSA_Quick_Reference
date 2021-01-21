@@ -30,7 +30,7 @@ This is a _Data Structure and Algorithms_ quick reference, focusing on moderate 
     - [Bubble Sort](docs/bubble_sort.md)
     - [Merge Sort](docs/merge_sort.md)
     - [Quick Sort](docs/quick_sort.md)
-  - Divide and Conquer
+  - [Divide and Conquer](docs/divide_and_conquer.md)
     - Median problem
     - Basic approach
     - D&C approach
