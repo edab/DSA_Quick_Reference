@@ -31,9 +31,8 @@ This is a _Data Structure and Algorithms_ quick reference, focusing on moderate 
     - [Merge Sort](docs/merge_sort.md)
     - [Quick Sort](docs/quick_sort.md)
   - [Divide and Conquer](docs/divide_and_conquer.md)
-    - Median problem
-    - Basic approach
-    - D&C approach
+    - [Median problem](docs/median_problem.md)
+    - [Maximum Subarray Problem](docs/maximum_subarray_problem.md)
   - Greedy Algorithms
     - [Dijkstras](docs/dijkstras_algorithm.md)
   - Dynamic Programming

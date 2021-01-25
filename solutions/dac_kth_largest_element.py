@@ -1,6 +1,6 @@
-# Divide and Conquer
+# Divide and Conquer: k_th largest element
 #
-# Problem: Given an unsorted array Arr with n positive integers, find the k_th 
+# Problem: Given an unsorted array Arr with n positive integers, find the k_th
 #          smallest element in the given array.
 #   Input: Unsorted array Arr of length n and an integer k where 1≤k≤n
 #  Output: The k_th smallest element of array Arr
@@ -16,30 +16,30 @@
 #   Output = 12
 from typing import List
 
-def findMedian(Arr: List[int], start: int, size: int) -> int: 
+def findMedian(Arr: List[int], start: int, size: int) -> int:
     '''
     Helper function for find the median in a list, sorting it
     '''
 
     # Get the slice of interest
     if start + size > len(Arr):
-        size = len(Arr) - start 
-    
-    myList = Arr[start:start+size] 
-          
-    # Sort the array  
-    myList.sort() 
-  
-    # Return the middle element 
-    return myList[size // 2] 
+        size = len(Arr) - start
+
+    myList = Arr[start:start+size]
+
+    # Sort the array
+    myList.sort()
+
+    # Return the middle element
+    return myList[size // 2]
 
 def fastSelect(Arr: List[int], k: int) -> int:
     '''
     Find the k_th smallest element in the array Arr
     '''
 
-    n = len(Arr)                                
-    
+    n = len(Arr)
+
     # Base check
     if (k > 0 and k <= n):
 
@@ -48,21 +48,21 @@ def fastSelect(Arr: List[int], k: int) -> int:
         arr_equal_p = []
         arr_more_p = []
         i = 0
-        
+
         # Step 1 - Break Arr into groups of size 5
         # Step 2 - For each group, sort and find median, add it to the medians
         #while (i < n // 5):
         while (i < n):
             median = findMedian(Arr, i, 5)
-            medians.append(median)         
+            medians.append(median)
             i += 5
-        
+
         # Step 3 - Find the median of medians
         if (len(medians) == 1):
             pivot = medians[0]
         elif (len(medians) > 1):
             pivot = fastSelect(medians, (len(medians)//2))
-        
+
         # Step 4 - Partition the original Arr into three sub-arrays
         for element in Arr:
             if (element<pivot):
@@ -71,16 +71,16 @@ def fastSelect(Arr: List[int], k: int) -> int:
                 arr_more_p.append(element)
             else:
                 arr_equal_p.append(element)
-        
+
         # Step 5 - Recurse based on the sizes of the three sub-arrays
         if (k <= len(arr_less_p)):
             return fastSelect(arr_less_p, k)
-        
+
         elif (k > (len(arr_less_p) + len(arr_equal_p))):
             return fastSelect(arr_more_p, (k - len(arr_less_p) - len(arr_equal_p)))
-            
+
         else:
-            return pivot     
+            return pivot
 
 # Test cases
 print('Testing Kth Largest Element solution')
