@@ -14,9 +14,8 @@
 #   Arr = [6, 80, 36, 8, 23, 7, 10, 12, 42, 99]
 #   k = 5
 #   Output = 12
-from typing import List
 
-def findMedian(Arr: List[int], start: int, size: int) -> int:
+def findMedian(Arr: 'List[int]', start: int, size: int) -> int:
     '''
     Helper function for find the median in a list, sorting it
     '''
@@ -33,7 +32,7 @@ def findMedian(Arr: List[int], start: int, size: int) -> int:
     # Return the middle element
     return myList[size // 2]
 
-def fastSelect(Arr: List[int], k: int) -> int:
+def fastSelect(Arr: 'List[int]', k: int) -> int:
     '''
     Find the k_th smallest element in the array Arr
     '''
