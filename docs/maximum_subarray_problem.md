@@ -35,7 +35,7 @@ The _divide and conquer_ solution, should follow the usual template of this type
 
 ## Implementation
 
-Python3 implementation: [dac_maximum_subarray.py](../solutions/dac_maximum_subarray.py)
+Python3 implementation: [maximum_subarray_dac.py](../solutions/problems/maximum_subarray_dac.py)
 
 One possible implementation that use the _divide and conquer_ approach can be:
 
