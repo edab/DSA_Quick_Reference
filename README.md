@@ -1,6 +1,16 @@
 # DSA Quick Reference
 
-This is a _Data Structure and Algorithms_ quick reference, focusing on moderate and advanced topics used in coding interviews or coding competitions.
+This is a quick **Data Structure and Algorithms** reference guide with examples based on the _Python 3_ programming language.
+
+If you have come here, you are probably preparing for an interview, or just want to review some material before participating to a _coding competition_. Either way, I hope you enjoy that collection of material and make good use of it.
+
+I usually collect notes in a much more elegant way using my favorite pens, a _Moleskin_, drawing everything by hand. But if you have to travel, it can be useful to have everything available in one repository.
+
+There are a lot of similar documents, some of them really complete, that you will find in the reference section. I know a question will arise in your mind: why bother writing another one. Well, I am a great fan of "_review by doing it again_" philosophy, and I encourage you of doing the same because you really understand something when you try to explain it to someone else.
+
+Currently, this document is a work in progress and will soon reach a sufficient level of completeness, although the ultimate intention is to provide guidance for reviewing concepts you are already familiar with, so it will never be a comprehensive source of information.
+
+For more information on the topics, I have found some books and courses that could be useful to you, and that you will find in the references section at the bottom.
 
 ## Table Of Content
 
@@ -25,7 +35,7 @@ This is a _Data Structure and Algorithms_ quick reference, focusing on moderate 
       - [Maps](docs/maps.md)
     - [Graphs](docs/graphs.md)
 - Algorithms
-  - Binary Search
+  - [Binary Search](docs/binary_search.md)
   - Sorting
     - [Bubble Sort](docs/bubble_sort.md)
     - [Merge Sort](docs/merge_sort.md)
@@ -42,7 +52,9 @@ This is a _Data Structure and Algorithms_ quick reference, focusing on moderate 
 
 ## References
 
-- Online courses and tutorials
+Here you will find some useful online courses, book and tutorials that can help you going deeper into some topic:
+
+- Courses
   - [Data Structures and Algorithms, ND256](https://www.udacity.com/course/data-structures-and-algorithms-nanodegree--nd256)
   - [Python Data Structures Tutorial, tutorialpoint](https://www.tutorialspoint.com/python_data_structure/python_data_structure_introduction.htm)
 - Books
