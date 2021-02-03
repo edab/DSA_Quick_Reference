@@ -1,4 +1,4 @@
-# Heaps
+ # Heaps
 
 A **heap** is a special _Tree_ based data structures, where element are arranged in increasing or decreasing order, and for this reason there are two types of heaps:
 
@@ -10,6 +10,11 @@ A special type of Heap is a _Binary Heap_, where some additional rules apply:
 - Every node can have a maximum of two children.
 - All levels should be completely full.
 - If the last level isn't full, elements should be added from left to right.
+
+There are many different variants of _Heaps_:
+
+- _Fibonacci heap_: has better amortized running time, discovered by [Fredman and Tarjian](http://bioinfo.ict.ac.cn/~dbu/AlgorithmCourses/Lectures/Fibonacci-Heap-Tarjan.pdf).
+- _Brodal queue_: was the first heap variant to achieve $O(1)$ for every operation except for deletion, and was developed by [Gerth Stølting Brodal](http://www.brics.dk/RS/96/37/BRICS-RS-96-37.pdf).
 
 ## Operations
 
