@@ -1,19 +1,31 @@
 # Trees
 
-A **Tree** is a non linear _collection_ of elements called nodes connected by edges. There cannot be cycles or unconnected nodes, that support four types of operation: add and remove an elements on one end, and add and remove an element on the other end.
+A **Tree** is a non-linear _collection_ of elements called nodes connected by edges, arranged in a hierarchical structure with a _parent-child_ relationship between items. There cannot be cycles or unconnected nodes, and at the top of every tree, there is a so-called _root node_, the ancestor of all the other nodes.
+
+There are many special types of tree, that defines additional rules and can efficiently solve particular problems, like:
+
+- ***Binary tree***: where a _parent node_ can have only two children.
+- ***Binary search tree*** or (BST): where each node store a value greater than all the nodes of the left subtree, and less than those in the right subtree.
+- ***Binary Space Partitioning tree*** or (BSP): that recursively divide an area into two convex sets, allowing faster execution of 3D algorithms that need to process a large set of spatial information.
+- Heaps: that is an almost-complete tree where the key of a parent is always greater or equal to one of its children.
+- ***Trie*** or prefix tree: where information is stored in edges.
+- ***Fenwick tree***: an indexed tree that can efficiently calculate the prefix sum in a table of number.
+- ***Red-black tree***: a self-balancing binary search tree.
 
 ## Terminology
+
+![tree-structure](../images/tree_structure.png)
 
 There is some specific terminology associated with the tree:
 
 - `Node`: any structure that holds data.
 - `Root`: the root node is the one from which all other nodes come.
 - `Level` of a node: number of edges to the root plus one.
-- `Parent`: node with other connecting node.
-- `Child`: node connected to it's parent.
-- `Leaf`: node that has no children.
-- `Edge`: connection between two nodes.
-- `Path`: group of connections.
+- `Parent`: node with other connecting nodes.
+- `Child`: node connected to its parent.
+- `Leaf`: a node that has no children.
+- `Edge`: a connection between two nodes.
+- `Path`: a group of connections.
 - `Height of a tree`: number of levels in a _Tree_.
 - `Depth of a node`: number of edges from the root of the _Tree_ to that node.
 
@@ -34,22 +46,22 @@ Since there is no particular order in the nodes of a _Tree_, we could start off 
 A delete operation usually start with a search operation, and we can have different conditions to handle:
 
 - the node found is a _leaf_: we can simply delete it.
-- the node has only one child: we can delete it, and connect it's child to the old node's parent.
-- the node has two child: we can search a leaf, delete the node and attach it's child to it.
+- the node has only one child: we can delete it, and connect its child to the old node's parent.
+- the node has two children: we can search a leaf, delete the node and attach its child to it.
 
 ### Traversal
 
-Since a _Tree_ is a not linear data structure, can be traversed in multiple ways.
+Since a _Tree_ is a non-linear data structure, can be traversed in multiple ways.
 
-![tree](../images/tree.png)
+![tree](../images/tree_traversal.png)
 
-There are two common approach used to explore it:
+There are two common approaches used to explore it:
 
-- **Depth First Search (DFS)**: were the priority is to explore child nodes first. There are three main way to do this.
-  - **pre-order**: visit a node, traverse it's left subtree and then it's right subtree [D, B, A, C, E, F]
-  - **in-order**: traverse it's left subtree, visit the node, traverse it's right subtree [A, B, C, D, E, F]
-  - **post-order**: traverse it's left subtree, traverse it's right subtree and then visit the node. [A, C, B, F, E, D]
-- **Breadth First Search (BFS)**: were the priority is to visit each node that has the same level, before visiting child nodes. [D, B, E, A, C, F]
+- **Depth First Search (DFS)**: where the priority is to explore child nodes first. There is three main way to do this.
+  - **pre-order**: visit a node, traverse its left subtree and then its right subtree.
+  - **in-order**: traverse its left subtree, visit the node, traverse its right subtree.
+  - **post-order**: traverse its left subtree, traverse its a right subtree and then visit the node.
+- **Breadth-First Search (BFS)**: where the priority is to visit each node that has the same level, before visiting child nodes.
 
 ## Implementation
 
