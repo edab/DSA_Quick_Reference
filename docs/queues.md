@@ -4,11 +4,12 @@ A **Queue** or **FIFO** (First In First Out), is a linear _collection_ of elemen
 
 You can't get the element on the center, you need to remove all the other element to reach it.
 
-Since the stack definition is quite open, we can implement them in different ways:
+Since the queue definition is quite open, we can implement them in different ways:
 
 - using _linked lists_, keeping track of the head (or tail) where you always insert the last recent element.
 - using _arrays_, where we need to address the problem of allocating more space when needed.
-- using _python 3_ internal list implementation.
+- using _Python_ internal list implementation.
+- using _Python_ internal deque data structure (implemented in python as a doubly linked list).
 
 ## Terminology
 
@@ -22,9 +23,17 @@ There is some specific terminology associated with the queue:
 
 ## Complexity
 
-The _time complexity_, if `N` is the number of element already present, will be $O(1)$ for both `enqueue` and `dequeue`, and $O(N)$ for `access` or `search` operations.
+### Time complexity
 
-For _space complexity_, if $N$ is the total number of nodes and $M$ is the size of the data contained into a node will be $O(N * M)$.
+| Operation | List based | Deque based
+| :-- | :-- | :--
+| Pop/Append items on the right end (Enqueue) | _O(1)_ + reallocation | _O(1)_
+| Pop/Append items on the left end (Dequeue) | _O(N)_ | _O(1)_
+| Accessing arbitrary items through indexing | _O(1)_ | _O(N)_
+| Inserting and deleting items in the middle | _O(N)_ | _O(N)_
+| Search | _O(N)_ | _O(N)_
+
+The _space complexity_ is _O(N)_, where _N_ is the total number of elements present in the queue.
 
 ## Practice question
 
@@ -67,7 +76,7 @@ class Queue:
         self.queue_size -= 1
         return value
 
-    def size(self):
+    def __len__(self):
         return self.queue_size
 
     def is_empty(self):
@@ -132,7 +141,7 @@ class Queue:
         self.num_elements -= 1
         return value
 
-    def size(self):
+    def __len__(self):
         return self.num_elements
 
     def is_empty(self):
@@ -147,14 +156,60 @@ Python3 implementation: [queue_using_python_list.py](../solutions/queue_using_py
 class Queue:
 
     def __init__(self):
-        self.storage = []
+        self._storage = list()
 
-    def size(self):
-        return len(self.storage)
+    def __len__(self):
+        return len(self._storage)
+
+    def __contains__(self, item):
+        return item in self._storage
+
+    def __iter__(self):
+        yield from self._storage
+
+    def __repr__(self):
+        return f"Queue({list(self._storage)})"
 
     def enqueue(self, item):
-        self.storage.append(item)
+        self._storage.append(item)
 
     def dequeue(self):
-        return self.storage.pop(0)
+        try:
+            return self._storage.pop()
+        except IndexError:
+            raise IndexError("dequeue from an empty queue") from None
+
+```
+
+### Using Python Deque
+
+```Python
+from collections import deque
+
+class Queue:
+
+    def __init__(self):
+        self._storage = deque()
+
+    def __len__(self):
+        return len(self._storage)
+
+    def __contains__(self, item):
+        return item in self._storage
+
+    def __iter__(self):
+        yield from self._storage
+
+    def __repr__(self):
+        return f"Queue({list(self._storage)})"
+
+    def enqueue(self, item):
+        self._storage.append(item)
+
+    def dequeue(self):
+        try:
+            return self._storage.popleft()
+        except IndexError:
+            raise IndexError("dequeue from an empty queue") from None
+
 ```

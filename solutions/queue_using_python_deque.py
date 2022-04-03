@@ -1,7 +1,9 @@
+from collections import deque
+
 class Queue:
 
     def __init__(self):
-        self._storage = list()
+        self._storage = deque()
 
     def __len__(self):
         return len(self._storage)
@@ -20,7 +22,7 @@ class Queue:
 
     def dequeue(self):
         try:
-            return self._storage.pop()
+            return self._storage.popleft()
         except IndexError:
             raise IndexError("dequeue from an empty queue") from None
 
